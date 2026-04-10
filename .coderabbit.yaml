@@ -1,0 +1,42 @@
+language: en
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+
+  path_instructions:
+    - path: "src/analyzers/**"
+      instructions: |
+        Review for correct tree-sitter AST node traversal,
+        accurate pattern matching, and proper RuleSet export structure.
+        Flag any rules missing severity classification.
+
+    - path: "src/reporters/**"
+      instructions: |
+        Check that all three severity levels (high, medium, low) are
+        handled. Console reporter should use chalk for colors.
+        JSON reporter must produce valid parseable output.
+        Markdown reporter should produce clean GitHub-renderable output.
+
+    - path: "src/parsers/**"
+      instructions: |
+        Review for correct tree-sitter grammar usage, memory safety
+        in node traversal, and proper error handling on unparseable files.
+
+    - path: "tests/**"
+      instructions: |
+        Each rule test must include both a vulnerable fixture that triggers
+        the rule and a safe fixture that passes cleanly. Flag missing
+        fixture coverage.
+
+    - path: "tests/fixtures/**"
+      instructions: |
+        Fixture contracts must be minimal and targeted — only include
+        the pattern being tested, nothing else.
+
+chat:
+  auto_reply: true
